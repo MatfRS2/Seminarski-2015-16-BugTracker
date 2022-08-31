@@ -1,0 +1,206 @@
+After updating to version 3.5.6, I got an error from IIS saying that the library log4net.dll "or one of its dependencies" was having trouble loading. When I replaced the library with a copy from the 3.5.5 update, everything worked just fine. Is there something extra that needs to be done to correctly go from 3.5.5 to 3.5.6 or might this be a known bug with a known fix? Thanks in advance for your help.
+
+My bugtracker track the mail box of tartempion@xxxx.zz and someone send an email with - to recipient : gilles@sss.cc - cc recipient : tartempion@xxxx.zz I check the bug_posts table and i see tartempion@xxxx.zz in the field bp_email_cc but the field bp_email_to is empty... Is there a way to have the field bp_email_to with the value gilles@sss.cc ? 
+
+CreateUsersFromEmailTemplate - if this doesn't exist, you get an obscure dbnull error
+
+This bug also happened to me after I added some custom columns. Usually there are no problems with custom columns, but for one particular custom column, i addressed it directly through hash_custom_cols[ "Test"] during postback. Somehow one of its before/after variables were filled with null and the exception was thrown. After I modified the code to : if (before == "0" || before == "" || before == null) { before = ""; } if (after == "0" || after == "" || after == null) { after = ""; } the problem doesn't occurs anymore. I'm not sure if it's an elegant solution as I am new to C#. Any better recommendations are welcomed.
+bpandjojo
+
+[Avatar]
+2012-01-31 02:31:41 PST
+I forgot to mention in my previous post that the error occurs when my login doesn't have PERMISSION_ALL for that specific custom field. If I logged in as Administrator who can edit the custom column, the exception was not thrown.
+
+
+[Avatar]
+2012-01-24 05:20:55 PST
+My description above is a little obtuse, sorry. Basically what I am saying is that with the setting ShowPotentiallyDangerousHtml=0 my bugnotes display the HTML codes for single quotes, etc. when I turn it on ShowPotentiallyDangerousHtml=1 the bugnotes look fine. 'Fred' displays as 'Fred' My custom field called Steps To Recreate doesn't react this way, it will always display 'Fred' as &amp;#39;Fred&amp;#39; regardless of what the setting ShowPotentiallyDangerousHtml is. This is kind of a problem because when we enter in our STR, or a Test (we use this as part of TDD) our comments display poorly and when we include an INSERT statement (common for our tests) it makes the insert bad syntax until we massage out the &amp;#39; 
+
+
+1. Update the jquery version in use. 1.3.X is old and at least having this nasty bug not detecting Ajax capabilities of IE 7 or higher correctly. It still tries using Ajax by Active-X Object which causes a problem in case Active-X is disabled. Paranoids like me disable this. This might have been reason of jquery related errors reported in this forum. (Please do not get the idea of linking jquery to publicly available sources like Google as this will cause trouble in case a user is using enabled Pishing Filters.) 2. Update the help text shown when creating custom fields. Creating a non user dropdown list states to enter length as NNN. This is not clear and leads to unnecessary frustration. Simply say to specify length as integer which covers length of the longest list entry. Since, so far, these were the major issues I had, I can say, nice tool ;-) Uups, one thing. Using the FCK Editor for editing the SQL Queries is not the best idea as this editor replaces ' by &39; (or similar) which makes it hard to adjust the queries (the option to allow adjusting them is cool, indeed). It is easy to replace this again but this crappy editor suddenly tends to select more text as wanted and suddenly the entire SQL statement gets mixed up. A simple textarea object would be sufficient enough. Hard men code in Notepad ... ;-) A "restore default Query" would be a life saver for novices to SQL ... 
+
+
+
+
+kay, I'm sorry. It's late and I'm rushing to get you answers...but I changed the code to check for dr equalling null and yes it is... 2011-12-19 21:49:17 sql= select count(1) from bugs where bg_id = 1 2011-12-19 21:49:17 aditya:Use the btnet_service.exe user as the username 2011-12-19 21:49:17 sql= select us_id, us_admin, us_username, us_org, og_other_orgs_permission_level, isnull(us_forced_project,0) us_forced_project from users inner join orgs on us_org = og_id where us_username = N'support@curiasystems.com' 2011-12-19 21:49:17 elapsed millseconds:0000 2011-12-19 21:49:17 aditya:dr == null 2011-12-19 21:49:17 pop3:exception in threadproc_pop3: 2011-12-19 21:49:17 Object reference not set to an instance of an object. 2011-12-19 21:49:17 at btnet.MyMime.get_synthesized_security(SharpMimeMessage mime_message, String from_addr, String username) in c:\Program Files\btnet_3_5_5\www\App_Code\my_mime.cs:line 479 at btnet.MyPop3.fetch_messages(String project_user, String project_password, Int32 projectid) in c:\Program Files\btnet_3_5_5\www\App_Code\pop3.cs:line 166 at btnet.MyPop3.threadproc_pop3(Object obj) in c:\Program Files\btnet_3_5_5\www\App_Code\pop3.cs:line 296 2011-12-19 21:49:19 http://curia.dlinkddns.com/btnet/bugs.aspx sql= Here is the code snipet: btnet.Util.write_to_log("aditya:Use the btnet_service.exe user as the username"); // Use the btnet_service.exe user as the username sql = sql.Replace("$us", username.Replace("'", "''")); dr = btnet.DbUtil.get_datarow(sql); if (dr == null) btnet.Util.write_to_log("aditya:dr == null");
+adityaarora
+
+[Avatar]
+2012-01-26 06:04:48 PST
+Fixed, I found the problem. DR was null and it was because the username was not correct. Thanks for your time.
+ctragerProject Admin
+
+[Avatar]
+2012-01-27 10:38:34 PST
+I should make this kind of misconfiguration easier to diagnose by putting better logic, better logging...
+
+
+backup db with time
+
+
+CREATE LOGIN user1 WITH PASSWORD = N'pass1', DEFAULT_DATABASE = btnet
+CREATE USER user1 FOR LOGIN user1
+EXEC sp_addrolemember N'db_ddladmin', N'user1'
+EXEC sp_addrolemember N'db_datawriter', N'user1'
+EXEC sp_addrolemember N'db_datareader', N'user1'
+EXEC sp_addrolemember N'db_backupoperator', N'user1'
+
+
+* public static void Main(string[] args) { bool runInCommandLine = Environment.UserInteractive; if (runInCommandLine) { /* the code used in console */ } else { System.ServiceProcess.ServiceBase.Run(new service()); } } 
+
+
+* stupid "required" for custom fields
+https://sourceforge.net/projects/btnet/forums/forum/226938/topic/3688663
+
+* what if custom dropdown values are changed, but they are still in the db.
+
+* Hide SVN link by org?
+
+* <add key="ErrorEmailFrom" value="&quot;Joe Somebody&quot;&lt;issuetracker@somewhere.c0m&gt;"/>
+
+* add to docs about lucene, app data permission
+
+* 
+	My co-workers are not using the $SEEN flag because it does not reset when
+	the bug has changed.
+
+	Is it possible to reset all the $SEEN flags to NotSeen if a bug has
+	changed, and the flag is currently off?
+
+	My co-workers would rather see all the items that have changed since they
+	last viewed, than see what is newly entering the system.
+
+	There could be better solutions than what I have proposed.
+	Example:
+	One color would be for Never Seen
+	Second Color would be for Seen But Changed
+	Third color would be Seen and not changed
+
+	Also, having the $SEEN flag automatically change to "Seen and Not changed"
+	upon viewing of a bug would be a nice feature.
+
+* 
+Is there a way to default which email address is used when sending an email from a bug? Often when sending an email I forget to send it as from the project address and it's sent out from my own. The problem with this is that the reply doesn't go back into the bug, but into my personal email.
+
+
+*	This is what is happening, for us anyway. We have a small handful of people that are assisting with support calls. They are each on a different shift, answering bugs for users that are also on different shifts. Support person A (works 7a-3a), might respond via BTNet email to User C (works 11P-7a) request for assistance.
+
+	User C responds back with additional information to the email from Support A (who is now off for 3 days), but it is delivered to his personal email, so BTNet is not updated and it can sit in that email for a long period of time with being viewed.
+
+	Meanwhile Support Person B (works 3p-11p) sends another email because he doesn't see that the bug was updated yet. Again the reply from User C goes back to the Support B personal email and does not get updated in BTNet.
+
+	What I was thinking was to see if we could just have a global option for a 'send all emails from' that will force the sending email address to be the support one that is used by the end users who submit their bugs via email. That way, when the end user replies back, it will go to the support mailbox, not the personal mailbox of the support personnel. BTNet can then accurately track and update the bugs with responses from the support people and the end user responses.
+
+	Just a thought, but I think it would really make it a great tool for tracking the 24 hour support locations.
+	#
+	bamarchand
+
+	Sorry, the above working hours for Support person A should be 7a - 3p.
+	
+	
+* Can i turn a dataset into a view, update it with websvn links, then
+back into dataset?
+
+blog on bug tracker integration?
+blog on ldap integration?
+
+* how the hook scripts feed the data.  to web, not to db.
+--->  Ability to redo.
+--->  Ability to hook after the fact.
+* not a full repository browser.
+* parsing command line.
+* security on web pages? - you are browsing a list of files that were changed.
+* ignoring branches.
+* using magic words in the comments to change the status of the bug
+* dropped support for websvn
+
+
+****************************************
+* when deploying to demo
+1) don't copy install.aspx, Web.config
+2) copy RELEASE_NOTES.txt by hand to root
+****************************************
+* when creating release
+1) export to new folder btnetVRM, 
+2) diff Web.config with previous Web.config. Diff btnet312 and btnet311.
+****************************************
+* svnserve -d -r c:/cit
+********
+cd c:\cit\btnet\firefox
+"c:\program files\7-zip\7z.exe" x c:\temp\btnetfox(2).tar
+****************************************
+* cleaning up old bugs in demo
+
+select datepart(dy,bg_reported_date), count(1) from bugs
+group by datepart(dy,bg_reported_date)
+order by 2 desc
+
+select count(1) from bugs
+delete from bugs where bg_id < 1000 -- CHANGE THIS
+delete from bug_user_flags where fl_bug not in (select bg_id from bugs)
+delete from bug_user_seen where sn_bug not in (select bg_id from bugs)
+delete from bug_posts where bp_bug not in (select bg_id from bugs)
+delete from bug_subscriptions where bs_bug not in (select bg_id from bugs)
+delete from bug_relationships where re_bug1 not in (select bg_id from bugs)
+delete from bug_relationships where re_bug2 not in (select bg_id from bugs)
+delete from bug_tasks where tsk_bug not in (select bg_id from bugs)
+
+delete from bugs where bg_reported_user between 40 and 200
+
+delete from users where 
+us_id > 20 
+and us_id not in (select bg_reported_user from bugs)
+and us_id not in (select bg_last_updated_user from bugs) 
+and us_id not in (select bp_user from bug_posts)
+****************************************
+
+
+* When does SharpMime create folders? Just with Exchange?
+
+	public System.IO.FileInfo DumpBody ( System.String path, System.String name )
+	{
+		System.IO.FileInfo file = null;
+		if ( name!=null ) {
+		name = System.IO.Path.GetFileName(name);
+		// Dump file contents
+		try {
+			System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo ( path );
+		dir.Create();
+
+* auto subscribe if you modified bug
+* default value for internal comments, other fields, by user
+* many to many, queries to organizations
+* excel export for reports
+* escalation/reminder, "Due Date"
+* some sort of contact management?
+* syscolumns, column order scheme - make less fragile
+* edit_bug.aspx and css - support for multiple columns
+* set fields to required?  By org.
+* configurable start page, like start on dashboard
+* relationships, tasks in print?
+* Documentation improvements:
+* POP3Main, multiple filters, ldap
+* links on posts don't respect permissions
+* tasks part of notification scheme?
+* tasks part of audit trail?
+* tasks part of full text search, other search?
+* http://www.microsoft.com/web/gallery/developer.aspx
+* Hide delete in mass edit if not allowed to delete.
+* cache category, etc dropdowns for edit_bug.aspx?
+* Does "copy bug" not copy bug posts?
+* More awareness of what's changed.  Don't send email if stuff changed that user doesn't have permission for.    Internal comments too.
+* Change reported by
+* custom bit fields as checkboxes.
+* Hide inactive orgs, projects, like we do with users
+* Custom datetime, Bugs item #2873177, when not entered, time should default to 00:00:00
+* setting so that user only sees his own tasks?  when used as timesheet
+* edit web.config from web.
+* update custom files from web.
+* checkin comments in full text search?
+* enhance the query.aspx page
+* tasks (or related?) as indented items in list.
+* Control over the formatting of emails, what fields, disclaimer, etc.
+* sample query - bugs by closed date. - sotiris
+* automatically la  bel a bug according to a tag in the project. - sotiris
+* set up permissions for multiple external orgs and document it.
+
